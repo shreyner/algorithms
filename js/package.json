@@ -1,0 +1,41 @@
+{
+  "name": "algorithms-js",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint:es": "eslint \"./src/**/*.ts\"",
+    "lint:prettier": "prettier --check",
+    "lint": "npm run lint:es && npm run lint:prettier"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@types/jest": "^27.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "eslint": "^8.12.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
+    "lint-staged": "^12.3.7",
+    "prettier": "^2.6.2",
+    "simple-git-hooks": "^2.7.0",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npm run lint"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint",
+      "prettier --check"
+    ],
+    "*.{md,json}": [
+      "prettier --check"
+    ]
+  }
+}

@@ -7,7 +7,10 @@ import (
 )
 
 func main() {
+	sum := sum.Sum(1, 2)
+	timeNow := time.Now()
+
 	fmt.Println("Hello world")
-	fmt.Printf("Sum 1 + 2 = %v\n", sum.Sum(1, 2))
-	fmt.Println("The time is", time.Now())
+	fmt.Printf("Sum 1 + 2 = %v\n", sum)
+	fmt.Println("The time is", timeNow)
 }

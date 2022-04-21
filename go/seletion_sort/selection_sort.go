@@ -3,9 +3,9 @@ package seletion_sort
 func findIndexMin(arr []int) int {
 	indexMin := 0
 
-	for i := 1; i < len(arr); i++ {
-		if arr[indexMin] > arr[i] {
-			indexMin = i
+	for index, item := range arr {
+		if item < arr[indexMin] {
+			indexMin = index
 		}
 	}
 

@@ -6,8 +6,8 @@ func QuickSort(arr []int) []int {
 	}
 
 	pivot := arr[0]
-	less := []int{}
-	more := []int{}
+	var less []int
+	var more []int
 
 	for _, item := range arr[1:] {
 		if item <= pivot {

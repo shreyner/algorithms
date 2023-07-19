@@ -1,0 +1,67 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
+
+func main() {
+	var n int
+	fmt.Scan(&n)
+
+	reader := bufio.NewReader(os.Stdin)
+	scanner := bufio.NewScanner(reader)
+	scanner.Split(bufio.ScanWords)
+
+	writer := bufio.NewWriter(os.Stdout)
+	defer writer.Flush()
+
+	numbers := make([]int, n)
+	for i := 0; i < n; i++ {
+		scanner.Scan()
+		v, _ := strconv.Atoi(scanner.Text())
+
+		numbers[i] = v
+	}
+
+	k := 0
+	for i := 0; i < n; i++ {
+		k += numbers[i]
+	}
+
+	if k%2 != 0 {
+		fmt.Fprintln(writer, "False")
+		return
+	}
+
+	dp := make([][]bool, k/2+1)
+	dp[0] = make([]bool, n+1)
+	for i := 0; i < len(dp[0]); i++ {
+		dp[0][i] = true
+	}
+
+	for i := 1; i < len(dp); i++ {
+		dp[i] = make([]bool, n+1)
+		for j := 1; j < len(dp[i]); j++ {
+			if i-numbers[j-1] >= 0 {
+				dp[i][j] = dp[i][j-1] || dp[i-numbers[j-1]][j-1]
+			} else {
+				dp[i][j] = dp[i][j-1]
+			}
+		}
+	}
+
+	//for i := 0; i < len(dp); i++ {
+	//	fmt.Fprintln(writer, dp[i])
+	//}
+	//
+	//fmt.Fprintln(writer, k, k/2, len(dp))
+
+	if dp[k/2][n] {
+		fmt.Fprintln(writer, "True")
+	} else {
+		fmt.Fprintln(writer, "False")
+	}
+}
